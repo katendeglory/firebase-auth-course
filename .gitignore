@@ -66,5 +66,5 @@ node_modules/
 .env
 
 # other directories
-# .cache/
-# dist/
+.cache/
+dist/
