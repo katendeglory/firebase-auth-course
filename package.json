@@ -1,6 +1,13 @@
 {
+  "name": "tnn-auth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/katendeglory/firebase-auth-course.git",
+  "author": "Glory Katende <katendeglory@gmail.com>",
+  "license": "MIT",
   "scripts": {
-    "dev": "parcel index.html"
+    "dev": "parcel index.html",
+    "git-combo": "git add . && git commit -am \"Yet another commit\" && git push origin master"
   },
   "dependencies": {
     "firebase": "^7.19.0"
