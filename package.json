@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "dev": "parcel index.html"
+  },
+  "dependencies": {
+    "firebase": "^7.19.0"
+  }
+}
