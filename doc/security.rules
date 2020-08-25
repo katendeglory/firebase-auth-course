@@ -11,7 +11,7 @@ service cloud.firestore {
     	allow read, write: if isSignedIn();
     }
     
-		match /users/{userId}{
+    match /users/{userId}{
     	allow read, write: if isOwner(userId);
     }
     
