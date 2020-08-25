@@ -8,7 +8,7 @@ const accountDetails = document.querySelector('.account-details');
 
 
 
-/********************************************** ON AUTH CHAGES ************************************/
+/********************************************** 🌟 ON AUTH CHAGES 🌟 ************************************/
 
 auth.onAuthStateChanged(user => {
   if (user) {
@@ -29,7 +29,8 @@ auth.onAuthStateChanged(user => {
 
 
 
-/********************************************** SETUP THE UI **************************************/
+
+/********************************************** 🌟 SETUP THE UI 🌟 **************************************/
 
 const setupUI = (user) => {
   if (user) {
@@ -48,39 +49,30 @@ const setupUI = (user) => {
 
 
 
-/********************************************** SETUP THE GUIDES **********************************/
+
+/********************************************** 🌟 SETUP THE GUIDES 🌟 **********************************/
 
 const setupGuides = data => {
   let html = '';
-
   if (data.length) {
     data.forEach(doc => {
       const guide = doc.data();
       const li = `
         <li>
-          <div class="collapsible-header grey lighten-4">
-            ${guide.title}
-            </div>
-            <div class="collapsible-body white">
-            ${guide.content}
-          </div>
-        </li>
-      `;
-
+          <div class="collapsible-header grey lighten-4">${guide.title}</div>
+          <div class="collapsible-body white">${guide.content}</div>
+        </li>`;
       html += li;
     });
-
     guideList.innerHTML = html;
   }
-  else {
-    guideList.innerHTML = `<h5 class='center-align'>Login to view the guides</h5>`
-  }
+  else guideList.innerHTML = `<h5 class='center-align'>Login to view the guides</h5>`
 }
 
 
 
 
-/********************************************** SETUP MATERIAL UI *********************************/
+/********************************************** 🌟 SETUP MATERIAL UI 🌟 *********************************/
 
 document.addEventListener('DOMContentLoaded', function () {
   var modals = document.querySelectorAll('.modal');

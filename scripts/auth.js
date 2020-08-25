@@ -1,4 +1,5 @@
-/********************************************** FIREBASE INIT *************************************/
+/********************************************** 🌟 FIREBASE INIT 🌟 *************************************/
+
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -22,33 +23,26 @@ export const functions = firebase.functions();
 
 
 
-/********************************************** CURRENT USER **************************************/
-
-auth.onAuthStateChanged(user => {
-  console.log(user?.email);
-});
-
-
-
-
-/**********************************************  REGISTER *****************************************/
+/********************************************** 🌟 REGISTER 🌟 *****************************************/
 
 const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit', e => {
   e.preventDefault();
 
-  //************ Get user info
   const email = signupForm['signup-email'].value;
   const password = signupForm['signup-password'].value;
   const bio = signupForm['signup-bio'].value;
 
-  //*********** Sign in the user & create bio
   auth
     .createUserWithEmailAndPassword(email, password)
-    .then((res) => {
+    .then(res => {
+      /*
+        Create a user collection with the id of the user created in the auth database (non-availble in firestore)
+        Knowing the id we don't use add, we place the id and set the value. if id doesn't exist, it is created
+      */
       return db.collection('users').doc(res.user.uid).set({ bio });
     })
-    .then(res => {
+    .then(() => {
       const modal = document.querySelector('#modal-signup');
       M.Modal.getInstance(modal).close();
       signupForm.reset();
@@ -58,7 +52,7 @@ signupForm.addEventListener('submit', e => {
 
 
 
-/********************************************  LOG-OUT ********************************************/
+/******************************************** 🌟 LOG-OUT 🌟 ********************************************/
 
 const logout = document.querySelector('#logout');
 logout.addEventListener('click', (e) => {
@@ -69,7 +63,7 @@ logout.addEventListener('click', (e) => {
 
 
 
-/********************************************** LOGIN *********************************************/
+/********************************************** 🌟 LOGIN 🌟 *********************************************/
 
 const loginForm = document.querySelector('#login-form');
 loginForm.addEventListener('submit', e => {
@@ -89,7 +83,8 @@ loginForm.addEventListener('submit', e => {
 
 
 
-/********************************************** BESTOW ADMIN PRIVILEGES ***************************/
+
+/********************************************** 🌟 BESTOW ADMIN PRIVILEGES 🌟 ***************************/
 
 const adminForm = document.querySelector('.admin-actions');
 adminForm.addEventListener('submit', e => {
@@ -103,23 +98,18 @@ adminForm.addEventListener('submit', e => {
 
 
 
-/********************************************** CREATE A NEW GUIDE ********************************/
+/********************************************** 🌟 CREATE A NEW GUIDE 🌟 ********************************/
 
 const createForm = document.querySelector('#create-form');
 createForm.addEventListener('submit', e => {
   e.preventDefault();
 
   db.collection('guides')
-    .add({
-      title: createForm['title'].value,
-      content: createForm['content'].value,
-    })
+    .add({ title: createForm['title'].value, content: createForm['content'].value, })
     .then(() => {
       const modal = document.querySelector('#modal-create');
       M.Modal.getInstance(modal).close();
       createForm.reset();
     })
-    .catch(e => {
-      console.log(e.message);
-    });
+    .catch(e => console.log(e.message));
 });
