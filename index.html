@@ -5,7 +5,6 @@
   <!-- https://github.com/iamshaunjp/firebase-auth/tree/lesson-3 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="shortcut icon" href="https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/favicon.ico"
     type="image/x-icon">
@@ -14,26 +13,27 @@
 
 <body class="grey lighten-3">
 
+
   <!-- NAVBAR -->
-  <nav class=" z-depth-0 grey lighten-4">
+  <nav class="z-depth-0 grey lighten-4">
     <div class="nav-wrapper container">
       <a href="#" class="brand-logo">
         <img src="img/logo.svg" style="width: 180px; margin-top: 10px;">
       </a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li style="display: none;" class="logged-in">
+        <li class="logged-in" style="display: none;">
           <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
         </li>
-        <li style="display: none;" class="logged-in">
+        <li class="logged-in" style="display: none;">
           <a href="#" class="grey-text" id="logout">Logout</a>
         </li>
-        <li style="display: none;" class="logged-in">
+        <li class="admin" style="display: none;">
           <a href="#" class="grey-text modal-trigger" data-target="modal-create">Create Guide</a>
         </li>
-        <li style="display: none;" class="logged-out">
+        <li class="logged-out" style="display: none;">
           <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
         </li>
-        <li style="display: none;" class="logged-out">
+        <li class="logged-out" style="display: none;">
           <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
         </li>
         </span>
@@ -42,7 +42,7 @@
   </nav>
 
   <!-- ADMIN ACTIONS -->
-  <form class="center-align admin-actions" style="margin: 40px auto; max-width: 300px;">
+  <form class="center-align admin-actions admin" style="margin: 40px auto; max-width: 300px; display: none;">
     <input type="email" placeholder="User email" id="admin-email" required />
     <button class="btn-small yellow darken-2 z-depth-0">Make admin</button>
   </form>
@@ -119,7 +119,6 @@
 
     </ul>
   </div>
-
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <!-- <script src="scripts/auth.js"></script> -->

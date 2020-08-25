@@ -4,6 +4,7 @@ const guideList = document.querySelector('.guides');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const accountDetails = document.querySelector('.account-details');
+const adminItems = document.querySelectorAll('.admin');
 
 
 
@@ -12,10 +13,16 @@ const accountDetails = document.querySelector('.account-details');
 
 auth.onAuthStateChanged(user => {
   if (user) {
+
+    /******************* 🌟 CHECK ADMIN CLAIMS 🌟 ***************/
+    user.getIdTokenResult().then(token => {
+      user.admin = token.claims.admin;
+      setupUI(user);
+    })
+
     // db.collection('guides').get().then(snapshot => {
     db.collection('guides')
       .onSnapshot(snapshot => {
-        setupUI(user);
         setupGuides(snapshot.docs);
       }, err => {
         console.log(err.message);
@@ -34,13 +41,17 @@ auth.onAuthStateChanged(user => {
 
 const setupUI = (user) => {
   if (user) {
+    if (user.admin) {
+      adminItems.forEach(item => item.style.display = 'block');
+    }
     db.collection('users').doc(user.uid).get().then(doc => {
       let bio = doc.data().bio;
-      accountDetails.innerHTML = `<div>🧔 ${user.email}</div><hr/><div>${bio}</div>`
+      accountDetails.innerHTML = `<div>🧔 ${user.email}</div><br/><div>${bio}</div><br/><div class="pink-text">${user.admin ? '🔥 Admin' : 'User'}</div>`;
     });
     loggedInLinks.forEach(item => item.style.display = 'block');
     loggedOutLinks.forEach(item => item.style.display = 'none');
   } else {
+    adminItems.forEach(item => item.style.display = 'none');
     loggedInLinks.forEach(item => item.style.display = 'none');
     loggedOutLinks.forEach(item => item.style.display = 'block');
     accountDetails.innerHTML = "";
